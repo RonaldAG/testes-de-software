@@ -49,8 +49,45 @@ public class GerenciadoraClientesTest {
 	}
 	
 	@Test
-	public void testIdadeCliente() throws IdadeNaoPermitidaException {
+	public void testIdadeValidaCliente() throws IdadeNaoPermitidaException {
 		Cliente cliente1 = gerenciadora.pesquisaCliente(idClient1);
+		cliente1.setIdade(65);
+		
+		int idade = cliente1.getIdade();
+		
+		boolean idadevalida = gerenciadora.validaIdade(idade);
+		
+		assertTrue(idadevalida);
+	}
+	
+	@Test
+	public void testaIdadeValidaCliente2() throws IdadeNaoPermitidaException {
+		Cliente cliente1 = gerenciadora.pesquisaCliente(idClient1);
+		cliente1.setIdade(18);
+		
+		int idade = cliente1.getIdade();
+		
+		boolean idadevalida = gerenciadora.validaIdade(idade);
+		
+		assertTrue(idadevalida);
+	}
+	
+	@Test
+	public void testaIdadeInvalidaCliente() throws IdadeNaoPermitidaException {
+		Cliente cliente1 = gerenciadora.pesquisaCliente(idClient1);
+		cliente1.setIdade(17);
+		
+		int idade = cliente1.getIdade();
+		
+		boolean idadevalida = gerenciadora.validaIdade(idade);
+		
+		assertTrue(idadevalida);
+	}
+	
+	@Test
+	public void testaIdadeInvalidaCliente2() throws IdadeNaoPermitidaException {
+		Cliente cliente1 = gerenciadora.pesquisaCliente(idClient1);
+		cliente1.setIdade(66);
 		
 		int idade = cliente1.getIdade();
 		
